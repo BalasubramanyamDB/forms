@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table{
+        border:"2px solid black";
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data</title>
+</head>
+<body>
+    <table border="2" cellspacing="0" cellpadding="0">
+    </table>
+    <button><a href="index.html">Back</a></button>
+</body>
+<script>
+    const get=async()=>{
+        const data=await fetch('http://localhost:4000')
+        const d=await data.json();
+        console.log(d)
+        content=`
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email Id</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Address</th>
+            <th>Country</th>
+        </tr>
+        `;
+        d.forEach(e => {
+            content+=`
+            <tr>
+            <td>${e.fname}</td>
+            <td>${e.lname}</td>
+            <td>${e.email}</td>
+            <td>${e.dob}</td>
+            <td>${e.gender}</td>
+            <td>${e.city}</td>
+            <td>${e.state}</td>
+            <td>${e.address}</td>
+            <td>${e.country}</td>
+        </tr>
+            `
+        });
+        const t=document.querySelector('table')
+        t.innerHTML=content
+    }
+    get();
+    
+</script>
+</html>
